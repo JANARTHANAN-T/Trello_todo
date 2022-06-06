@@ -1,0 +1,87 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="css/home.css" />
+
+<style>
+  .float{
+	position:fixed;
+	width:50px;
+	height:50px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 1;
+}
+
+.delete{
+	position:fixed;
+	width:50px;
+	height:50px;
+	bottom:120px;
+	right:40px;
+	background-color:rgba(204, 0, 0, 0.767);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 1;
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+</style>
+
+<a href="/createtask/<%= id %> " class="float">
+  <i class="fa-solid fa-plus fs-4 my-3"></i>
+</a>
+
+
+<form action="/todo/<%= id %>/" method="POST">
+    <button class="btn delete"><i class="fa-solid fa-trash-can"></i></button>
+</form>
+
+
+
+<div class="d-flex justify-content-center mt-3 ">
+  <div class="card p-5 pt-0 m-3" style="width: 80em">
+    <div class="text-center text-info fs-2 fw-bold my-3">Your Task</div>
+    <div class="container">
+        <% rows.map((o)=>{ %>
+          <div class="card shadow p-1 m-5 bg-body rounded">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-5 fw-bold"><%= o.name %></div>
+                <% if (o.status=="Pending") { %>
+                  <div class="col-md-4 text-secondary fw-medium fst-italic"><%= o.status %>...</div>
+                <% }else{ %>
+                  <div class="col-md-4 text-success"><%= o.status %></div>
+                  <% } %> 
+                
+                
+                <div class="col-md-1">
+                  <form action="/complete/<%= id  %>/<%= o.id  %> " method="POST">
+                    <button class="btn"><i class="fa-solid fa-check"></i></button>
+                  </form>
+                </div>
+                <div class="col-md-1">
+                  <form action="/update/<%= id %>/<%= o.id  %> " method="GET">
+                    <button class="btn"><i class="fa-solid fa-pen"></i></button>
+                  </form>
+                </div>
+                <div class="col-md-1">
+                  <form action="/todo/<%= id  %>/<%= o.id  %> " method="POST">
+                    <button class="btn"><i class="fa-solid fa-x"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+    </div>
+  </div>
+</div>

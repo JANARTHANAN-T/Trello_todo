@@ -1,0 +1,42 @@
+<style>
+  .container1 {
+  background: rgba(0, 0, 0, 0.726);
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .container1 {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark container1">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Trello</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <% if (login==1) { %>
+          <li class="nav-item">
+            <a class="nav-link mx-3" aria-current="page" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-3" aria-current="page" href="/login">LogOut</a>
+          </li>
+        <% }else{ %> 
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <% } %> 
+      </ul>
+    </div>
+  </div>
+</nav>
